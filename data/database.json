@@ -1649,23 +1649,6 @@
       "penaltyPoints": 0
     },
     {
-      "generatorId": "gen_coal_1",
-      "plantId": "plant_shidong",
-      "targetOutput": 500,
-      "startTime": "2026-06-07T21:30:33.098Z",
-      "endTime": "2026-06-07T22:25:33.098Z",
-      "issuedBy": "dispatch_1",
-      "status": "violated",
-      "id": "6993c0a2-bfe5-42c3-95b7-b1dcf86db75a",
-      "issuedAt": "2026-06-07T13:25:33.102Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 0,
-      "deviation": -500,
-      "acknowledgedAt": "2026-06-07T13:27:35.087Z",
-      "completedAt": "2026-06-07T13:27:35.087Z"
-    },
-    {
       "transactionId": "ead6d592-e521-4ce6-a668-bbdeee258b47",
       "generatorId": "13b1bc5b-add3-4859-b28b-82d2cff814a4",
       "plantId": "ed4aebd9-ec74-4469-9794-b18c242689b7",
@@ -1718,296 +1701,10 @@
       "issuedAt": "2026-06-07T13:26:04.721Z",
       "violationCount": 0,
       "penaltyPoints": 0
-    },
-    {
-      "generatorId": "gen_coal_1",
-      "plantId": "plant_shidong",
-      "targetOutput": 500,
-      "startTime": "2026-06-08T11:55:33.485Z",
-      "endTime": "2026-06-08T12:50:33.485Z",
-      "issuedBy": "dispatch_1",
-      "status": "acknowledged",
-      "id": "3677febf-7a44-4242-b1f2-1a9fc1e6e5b1",
-      "issuedAt": "2026-06-08T03:50:33.510Z",
-      "violationCount": 0,
-      "penaltyPoints": 0,
-      "acknowledgedAt": "2026-06-08T03:50:33.548Z"
-    },
-    {
-      "generatorId": "gen_coal_1",
-      "plantId": "plant_shidong",
-      "targetOutput": 500,
-      "startTime": "2026-06-08T11:47:05.845Z",
-      "endTime": "2026-06-08T12:52:05.845Z",
-      "issuedBy": "dispatch_1",
-      "status": "violated",
-      "id": "81e6a8ef-a324-4c7c-94d4-81a3cb0e827f",
-      "issuedAt": "2026-06-08T03:52:05.847Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 0,
-      "deviation": -500,
-      "completedAt": "2026-06-08T03:54:09.030Z"
-    },
-    {
-      "generatorId": "gen_coal_2",
-      "plantId": "plant_shidong",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T11:47:07.875Z",
-      "endTime": "2026-06-08T12:52:07.876Z",
-      "issuedBy": "dispatch_1",
-      "status": "violated",
-      "id": "86197b30-7f18-43d2-afd6-a696328e3882",
-      "issuedAt": "2026-06-08T03:52:07.877Z",
-      "violationCount": 2,
-      "penaltyPoints": 30,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T03:54:56.389Z",
-      "continuousPenalty": 10
-    },
-    {
-      "generatorId": "gen_coal_1",
-      "plantId": "plant_shidong",
-      "targetOutput": 500,
-      "startTime": "2026-06-08T11:51:14.428Z",
-      "endTime": "2026-06-08T12:56:14.428Z",
-      "issuedBy": "dispatch_1",
-      "status": "violated",
-      "id": "c7904919-10f6-4928-9584-b724c5c902b6",
-      "issuedAt": "2026-06-08T03:56:14.450Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 0,
-      "deviation": -500,
-      "completedAt": "2026-06-08T03:58:18.606Z"
-    },
-    {
-      "generatorId": "gen_coal_2",
-      "plantId": "plant_shidong",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T11:51:14.491Z",
-      "endTime": "2026-06-08T12:56:14.492Z",
-      "issuedBy": "dispatch_1",
-      "status": "violated",
-      "id": "54fc8f8e-2d68-4219-92f4-b5316c451269",
-      "issuedAt": "2026-06-08T03:56:14.494Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 0,
-      "deviation": -300,
-      "completedAt": "2026-06-08T03:58:18.603Z"
-    },
-    {
-      "generatorId": "gen_001",
-      "plantId": "plant_001",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T10:00:00Z",
-      "endTime": "2026-06-08T11:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "b183a7bc-84a6-4943-8a83-c6169d51145e",
-      "issuedAt": "2026-06-08T04:44:59.291Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T04:45:47.297Z"
-    },
-    {
-      "generatorId": "gen_001",
-      "plantId": "plant_001",
-      "targetOutput": 350,
-      "startTime": "2026-06-08T11:00:00Z",
-      "endTime": "2026-06-08T12:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "6267cc48-8645-4e8b-9af7-d56bb15ab4dd",
-      "issuedAt": "2026-06-08T04:45:24.905Z",
-      "violationCount": 1,
-      "penaltyPoints": 20,
-      "actualOutput": 50,
-      "deviation": -300,
-      "completedAt": "2026-06-08T04:46:01.178Z",
-      "continuousPenalty": 10,
-      "continuousPenaltyApplied": true
-    },
-    {
-      "generatorId": "gen_001",
-      "plantId": "plant_001",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T10:00:00Z",
-      "endTime": "2026-06-08T11:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "200a4fe2-d000-4631-9682-e76f97111ff3",
-      "issuedAt": "2026-06-08T04:47:42.909Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T04:48:07.235Z"
-    },
-    {
-      "generatorId": "gen_002",
-      "plantId": "plant_001",
-      "targetOutput": 350,
-      "startTime": "2026-06-08T11:00:00Z",
-      "endTime": "2026-06-08T12:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "89c85158-0135-4a52-9d29-67cdd8c0f2e1",
-      "issuedAt": "2026-06-08T04:47:56.909Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 50,
-      "deviation": -300,
-      "completedAt": "2026-06-08T04:48:21.326Z"
-    },
-    {
-      "generatorId": "gen_001",
-      "plantId": "plant_001",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T10:00:00Z",
-      "endTime": "2026-06-08T11:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "c41edf59-bbff-457f-8ed7-7aab9e7d6190",
-      "issuedAt": "2026-06-08T04:50:22.902Z",
-      "violationCount": 1,
-      "penaltyPoints": 20,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T04:50:42.150Z",
-      "continuousPenalty": 10,
-      "continuousPenaltyApplied": true
-    },
-    {
-      "generatorId": "gen_002",
-      "plantId": "plant_001",
-      "targetOutput": 350,
-      "startTime": "2026-06-08T11:00:00Z",
-      "endTime": "2026-06-08T12:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "6c5e7343-6975-4020-b352-641a598cd535",
-      "issuedAt": "2026-06-08T04:50:32.877Z",
-      "violationCount": 1,
-      "penaltyPoints": 20,
-      "actualOutput": 0,
-      "deviation": -350,
-      "completedAt": "2026-06-08T04:53:03.761Z",
-      "continuousPenalty": 10,
-      "continuousPenaltyApplied": true
-    },
-    {
-      "generatorId": "gen_test_1",
-      "plantId": "plant_test_999",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T10:00:00Z",
-      "endTime": "2026-06-08T11:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "d2a26315-8ef9-4549-b5fe-0fa3b0f90ab1",
-      "issuedAt": "2026-06-08T04:51:10.789Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T04:51:32.829Z"
-    },
-    {
-      "generatorId": "gen_test_2",
-      "plantId": "plant_test_999",
-      "targetOutput": 350,
-      "startTime": "2026-06-08T11:00:00Z",
-      "endTime": "2026-06-08T12:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "3d3bc2dc-c885-4a91-856c-d53edb83a4d3",
-      "issuedAt": "2026-06-08T04:51:22.634Z",
-      "violationCount": 2,
-      "penaltyPoints": 30,
-      "actualOutput": 30,
-      "deviation": -320,
-      "completedAt": "2026-06-08T04:52:04.414Z",
-      "continuousPenalty": 10,
-      "continuousPenaltyApplied": true
-    },
-    {
-      "generatorId": "gen_ct_1",
-      "plantId": "plant_clean_test",
-      "targetOutput": 300,
-      "startTime": "2026-06-08T10:00:00Z",
-      "endTime": "2026-06-08T11:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "3e6755f4-3363-4eb3-b931-c2404f01cc3d",
-      "issuedAt": "2026-06-08T04:53:10.492Z",
-      "violationCount": 1,
-      "penaltyPoints": 10,
-      "actualOutput": 100,
-      "deviation": -200,
-      "completedAt": "2026-06-08T04:53:33.368Z"
-    },
-    {
-      "generatorId": "gen_ct_2",
-      "plantId": "plant_clean_test",
-      "targetOutput": 350,
-      "startTime": "2026-06-08T11:00:00Z",
-      "endTime": "2026-06-08T12:00:00Z",
-      "issuedBy": "dispatcher_001",
-      "status": "violated",
-      "id": "3256d494-f823-48c6-a18e-90c50bbf1279",
-      "issuedAt": "2026-06-08T04:53:23.664Z",
-      "violationCount": 1,
-      "penaltyPoints": 20,
-      "actualOutput": 50,
-      "deviation": -300,
-      "completedAt": "2026-06-08T04:53:44.857Z",
-      "continuousPenalty": 10,
-      "continuousPenaltyApplied": true
     }
   ],
   "crossBorderChecks": [],
   "settlements": [
-    {
-      "plantId": "plant_shidong",
-      "ownerId": "unknown",
-      "period": "2026-06-07",
-      "periodType": "daily",
-      "totalEnergy": 0,
-      "totalRevenue": 0,
-      "deviationPenalty": 0,
-      "carbonCost": 0,
-      "renewableCompensation": 0,
-      "dispatchPenaltyDeduction": 0,
-      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
-      "netAmount": 0,
-      "status": "calculated",
-      "items": [],
-      "id": "1588a891-db17-4016-a612-a6c87d9b504c",
-      "createdAt": "2026-06-07T13:25:48.044Z"
-    },
-    {
-      "plantId": "plant_shidong",
-      "ownerId": "unknown",
-      "period": "2026-06-08",
-      "periodType": "daily",
-      "totalEnergy": 0,
-      "totalRevenue": 0,
-      "deviationPenalty": 0,
-      "carbonCost": 0,
-      "renewableCompensation": 0,
-      "dispatchPenaltyDeduction": 0,
-      "continuousPenaltyDeduction": 0,
-      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
-      "netAmount": 0,
-      "status": "calculated",
-      "items": [],
-      "id": "b8f86e04-c831-44c6-a7f8-1f9d3ce2e520",
-      "createdAt": "2026-06-08T03:50:48.631Z"
-    },
     {
       "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
       "ownerId": "unknown",
@@ -2126,42 +1823,102 @@
       "createdAt": "2026-06-08T03:51:49.415Z"
     },
     {
-      "plantId": "plant_shidong",
-      "ownerId": "unknown",
-      "period": "2026-06-08",
-      "periodType": "daily",
-      "totalEnergy": 0,
-      "totalRevenue": 0,
-      "deviationPenalty": 4000,
-      "carbonCost": 0,
+      "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
+      "ownerId": "owner_001",
+      "period": "2026-06",
+      "periodType": "monthly",
+      "totalEnergy": 2655.39,
+      "totalRevenue": 985909.84,
+      "deviationPenalty": 0,
+      "carbonCost": 7148.16,
       "renewableCompensation": 0,
-      "dispatchPenaltyDeduction": 4000,
-      "continuousPenaltyDeduction": 1000,
+      "dispatchPenaltyDeduction": 0,
+      "continuousPenaltyDeduction": 0,
       "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
-      "netAmount": -4000,
+      "netAmount": 978761.68,
       "status": "calculated",
-      "items": [],
-      "id": "a6ea839f-e963-410b-a483-89770205506d",
-      "createdAt": "2026-06-08T03:57:10.261Z"
-    },
-    {
-      "plantId": "plant_clean_test",
-      "ownerId": "unknown",
-      "period": "2026-06-08",
-      "periodType": "daily",
-      "totalEnergy": 0,
-      "totalRevenue": 0,
-      "deviationPenalty": 3000,
-      "carbonCost": 0,
-      "renewableCompensation": 0,
-      "dispatchPenaltyDeduction": 2000,
-      "continuousPenaltyDeduction": 1000,
-      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
-      "netAmount": -3000,
-      "status": "calculated",
-      "items": [],
-      "id": "7f4702ef-c7cb-4156-94f5-dfa8016d7221",
-      "createdAt": "2026-06-08T04:54:21.649Z"
+      "items": [
+        {
+          "transactionId": "0d8e528c-4718-4d5a-ab93-8e587b30c91b",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 20,
+          "scheduledEnergy": 502.79,
+          "actualEnergy": 485.19,
+          "deviation": -17.6,
+          "deviationRatio": 0.035,
+          "price": 392.12,
+          "amount": 190252.7,
+          "penalty": 0,
+          "penaltyRule": "偏差率3.50% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "7f9a5995-46cf-4318-be1e-81d2c039b840",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 16,
+          "scheduledEnergy": 527.51,
+          "actualEnergy": 501.82,
+          "deviation": -25.69,
+          "deviationRatio": 0.0487,
+          "price": 407.72,
+          "amount": 204602.05,
+          "penalty": 0,
+          "penaltyRule": "偏差率4.87% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "bcdcac7e-bd52-407f-a604-3d4415aff1eb",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 12,
+          "scheduledEnergy": 379.88,
+          "actualEnergy": 384.17,
+          "deviation": 4.29,
+          "deviationRatio": 0.0113,
+          "price": 273.23,
+          "amount": 104966.77,
+          "penalty": 0,
+          "penaltyRule": "偏差率1.13% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "369a2e11-013f-4ec0-b055-5d84882fc29e",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 8,
+          "scheduledEnergy": 409.07,
+          "actualEnergy": 393.87,
+          "deviation": -15.2,
+          "deviationRatio": 0.0372,
+          "price": 316.33,
+          "amount": 124592.9,
+          "penalty": 0,
+          "penaltyRule": "偏差率3.72% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "45f704a3-0b69-4b4f-a59f-7f8810843984",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 4,
+          "scheduledEnergy": 462.08,
+          "actualEnergy": 483.59,
+          "deviation": 21.51,
+          "deviationRatio": 0.0466,
+          "price": 438.04,
+          "amount": 211831.76,
+          "penalty": 0,
+          "penaltyRule": "偏差率4.66% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "b66e10e1-1736-4fc9-8e02-e35ddf0c9f41",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 0,
+          "scheduledEnergy": 426.31,
+          "actualEnergy": 406.75,
+          "deviation": -19.56,
+          "deviationRatio": 0.0459,
+          "price": 367.95,
+          "amount": 149663.66,
+          "penalty": 0,
+          "penaltyRule": "偏差率4.59% ≤ 5%，免考核"
+        }
+      ],
+      "id": "ca7ecabb-619d-46f6-aa4d-4fa0a12f7f47",
+      "createdAt": "2026-06-08T05:12:43.715Z"
     }
   ],
   "renewableForecasts": [],
@@ -2213,38 +1970,6 @@
       "status": "deficit",
       "recommendations": [],
       "tradingRecords": []
-    },
-    {
-      "plantId": "plant_owner_test",
-      "ownerId": "owner_001",
-      "period": "2026-06",
-      "quota": 100,
-      "actualEmission": 150,
-      "remaining": -50,
-      "status": "deficit",
-      "recommendations": [
-        "建议立即购买碳配额",
-        "考虑优化机组运行降低碳排放",
-        "增加新能源发电比例"
-      ],
-      "tradingRecords": [],
-      "id": "9c3015df-3e25-4cf9-a6c8-6118a42968f1"
-    },
-    {
-      "plantId": "plant_owner_test2",
-      "ownerId": "owner_002",
-      "period": "2026-06",
-      "quota": 200,
-      "actualEmission": 250,
-      "remaining": -50,
-      "status": "deficit",
-      "recommendations": [
-        "建议立即购买碳配额",
-        "考虑优化机组运行降低碳排放",
-        "增加新能源发电比例"
-      ],
-      "tradingRecords": [],
-      "id": "fe036802-ee96-4527-8903-54b19da6c0a5"
     }
   ],
   "alerts": [
@@ -2272,370 +1997,6 @@
       ],
       "id": "8e372796-8db7-44ed-b743-faabc1c74589",
       "createdAt": "2026-06-07T13:26:04.721Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规 - 第1次",
-      "message": "机组gen_coal_1指令下发122秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "6993c0a2-bfe5-42c3-95b7-b1dcf86db75a",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "bf2a4077-8fea-4a17-95d6-a345ababddb2",
-      "createdAt": "2026-06-07T13:27:35.088Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规 - 第1次",
-      "message": "机组gen_coal_2指令下发121秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "86197b30-7f18-43d2-afd6-a696328e3882",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "2e5417d0-4481-47d8-bbb5-32553de26670",
-      "createdAt": "2026-06-08T03:54:09.027Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规 - 第1次",
-      "message": "机组gen_coal_1指令下发123秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "81e6a8ef-a324-4c7c-94d4-81a3cb0e827f",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "e70c4cc6-6722-4474-a6b6-fc9b9e98fa9a",
-      "createdAt": "2026-06-08T03:54:09.032Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "调度执行违规 - 第2次",
-      "message": "机组gen_coal_2未按指令执行: 执行违规。当前扣分: 20分",
-      "relatedId": "86197b30-7f18-43d2-afd6-a696328e3882",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "f0fed08a-bbde-4c59-aaa3-81232b6df2e2",
-      "createdAt": "2026-06-08T03:54:56.390Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_shidong连续2次违规，追加10分考核，累计30分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_shidong",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "1227d851-21eb-4e2d-a424-3adfd410962b",
-      "createdAt": "2026-06-08T03:54:56.391Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规 - 第1次",
-      "message": "机组gen_coal_2指令下发124秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "54fc8f8e-2d68-4219-92f4-b5316c451269",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "a2e25f10-6a9c-49f6-b2e6-354d7d1d5347",
-      "createdAt": "2026-06-08T03:58:18.605Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规 - 第1次",
-      "message": "机组gen_coal_1指令下发124秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "c7904919-10f6-4928-9584-b724c5c902b6",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "decccf07-a166-4ee6-828b-2e1151b7589e",
-      "createdAt": "2026-06-08T03:58:18.606Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_001未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "b183a7bc-84a6-4943-8a83-c6169d51145e",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "75eed0a6-bd06-4685-a94e-7ebdbdb5bd2f",
-      "createdAt": "2026-06-08T04:45:47.299Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_001未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "6267cc48-8645-4e8b-9af7-d56bb15ab4dd",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "c5692f7f-be10-4d8f-9d0c-95fb79c09a75",
-      "createdAt": "2026-06-08T04:46:01.179Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_001连续2次违规，追加10分考核，累计20分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_001",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "1350c959-63c0-4e24-8a86-e19230f5a06a",
-      "createdAt": "2026-06-08T04:46:01.180Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_001未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "200a4fe2-d000-4631-9682-e76f97111ff3",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "b9837b04-9b2b-43c7-8583-8249e6ff9f4a",
-      "createdAt": "2026-06-08T04:48:07.236Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_002未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "89c85158-0135-4a52-9d29-67cdd8c0f2e1",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "41a121d8-bd0c-489a-b2fe-5ca449cd213d",
-      "createdAt": "2026-06-08T04:48:21.327Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_001未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "c41edf59-bbff-457f-8ed7-7aab9e7d6190",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "7317a96a-cf7c-4171-a7ea-1d384a0a72db",
-      "createdAt": "2026-06-08T04:50:42.152Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_001连续2次违规，追加10分考核，累计20分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_001",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "94e4d366-6f3d-404a-a8ff-a4f4f0af07e9",
-      "createdAt": "2026-06-08T04:50:42.153Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_test_1未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "d2a26315-8ef9-4549-b5fe-0fa3b0f90ab1",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "95541e30-62c8-44cf-9ff8-b1f1a849a8db",
-      "createdAt": "2026-06-08T04:51:32.830Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_test_2未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "3d3bc2dc-c885-4a91-856c-d53edb83a4d3",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "057fe9d9-8d5b-4514-9827-0db6ffa2336f",
-      "createdAt": "2026-06-08T04:51:42.999Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_test_999连续2次违规，追加10分考核，累计20分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_test_999",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "6e419bb4-a21c-4d4e-a322-4038cf8c2116",
-      "createdAt": "2026-06-08T04:51:43.000Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_test_2未按指令执行: 执行违规。当前扣分: 30分",
-      "relatedId": "3d3bc2dc-c885-4a91-856c-d53edb83a4d3",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "14dcd759-db5a-4358-a849-f9b0c8eff9dd",
-      "createdAt": "2026-06-08T04:52:04.415Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度超时违规",
-      "message": "机组gen_002指令下发151秒未确认，已自动标记为违规。当前扣分: 10分",
-      "relatedId": "6c5e7343-6975-4020-b352-641a598cd535",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "8e7d5cd4-e56a-4baa-8c85-f7ead9abaee6",
-      "createdAt": "2026-06-08T04:53:03.762Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_001连续2次违规，追加10分考核，累计20分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_001",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "9abe06e6-4bef-43fc-84ed-6764b43e4d2d",
-      "createdAt": "2026-06-08T04:53:03.763Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_ct_1未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "3e6755f4-3363-4eb3-b931-c2404f01cc3d",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "4a248368-79c9-4fca-a772-3753a7c639ec",
-      "createdAt": "2026-06-08T04:53:33.369Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "warning",
-      "title": "调度执行违规",
-      "message": "机组gen_ct_2未按指令执行: 执行违规。当前扣分: 10分",
-      "relatedId": "3256d494-f823-48c6-a18e-90c50bbf1279",
-      "targetRoles": [
-        "dispatch_center",
-        "power_producer"
-      ],
-      "id": "b807e186-b1be-4544-a048-dc0555527c4b",
-      "createdAt": "2026-06-08T04:53:44.858Z",
-      "acknowledged": false
-    },
-    {
-      "type": "dispatch_violation",
-      "severity": "critical",
-      "title": "连续违规加重处罚通知",
-      "message": "电厂plant_clean_test连续2次违规，追加10分考核，累计20分。将扣减当月结算费用，信用评级下调，限制交易权限",
-      "relatedId": "plant_clean_test",
-      "targetRoles": [
-        "dispatch_center",
-        "trading_center",
-        "power_producer"
-      ],
-      "id": "fa08a2bf-2d61-4d41-a95d-85a559466244",
-      "createdAt": "2026-06-08T04:53:44.859Z",
-      "acknowledged": false
-    },
-    {
-      "type": "carbon_deficit",
-      "severity": "critical",
-      "title": "【履约提醒】碳排放配额不足",
-      "message": "电厂plant_owner_test2026-06周期碳排放配额不足，缺口50.00吨。请立即购买配额或优化发电方案，避免履约风险",
-      "relatedId": "9c3015df-3e25-4cf9-a6c8-6118a42968f1",
-      "targetRoles": [
-        "trading_center",
-        "power_producer",
-        "carbon_analyst"
-      ],
-      "targetUsers": [
-        "owner_001"
-      ],
-      "id": "ff5f4dc2-84a0-4f82-8771-ecea81cc498b",
-      "createdAt": "2026-06-08T04:54:55.351Z",
-      "acknowledged": false
-    },
-    {
-      "type": "carbon_deficit",
-      "severity": "critical",
-      "title": "【履约提醒】碳排放配额不足",
-      "message": "电厂plant_owner_test22026-06周期碳排放配额不足，缺口50.00吨。请立即购买配额或优化发电方案，避免履约风险",
-      "relatedId": "fe036802-ee96-4527-8903-54b19da6c0a5",
-      "targetRoles": [
-        "trading_center",
-        "power_producer",
-        "carbon_analyst"
-      ],
-      "targetUsers": [
-        "owner_002"
-      ],
-      "id": "ce99d008-d09a-4d7b-b8c5-2d636d871b53",
-      "createdAt": "2026-06-08T04:55:05.710Z",
       "acknowledged": false
     }
   ]

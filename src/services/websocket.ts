@@ -7,6 +7,7 @@ import { alertModel } from '../models/operations';
 interface ConnectedClient {
   ws: WebSocket;
   userId: string;
+  ownerId?: string;
   roles: UserRole[];
 }
 
@@ -28,6 +29,7 @@ class WebSocketService {
             this.clients.set(clientId, {
               ws,
               userId: message.userId || clientId,
+              ownerId: message.ownerId || message.userId || undefined,
               roles: Array.isArray(message.roles) ? message.roles : ['power_producer']
             });
             ws.send(JSON.stringify({
@@ -60,31 +62,47 @@ class WebSocketService {
       ...message
     };
 
+    const send = (client: ConnectedClient) => {
+      if (client.ws.readyState === WebSocket.OPEN) {
+        client.ws.send(JSON.stringify(fullMessage));
+      }
+    };
+
     this.clients.forEach((client) => {
-      const hasRole = message.targetRoles.some(role => 
-        client.roles.map(r => r.toLowerCase()).includes((role as string).toLowerCase())
-      );
-      
-      if (!hasRole) return;
-
-      const isCarbonAnalyst = client.roles.map(r => r.toLowerCase()).includes('carbon_analyst');
-      const isOnlyCarbonAnalyst = isCarbonAnalyst && !client.roles.some(r => 
-        ['trading_center', 'power_producer', 'dispatch_center', 'admin'].map(s => s.toLowerCase()).includes((r as string).toLowerCase())
+      const clientRolesLower = client.roles.map(r => r.toLowerCase());
+      const isCarbonAnalyst = clientRolesLower.includes('carbon_analyst');
+      const hasOtherRole = clientRolesLower.some(r =>
+        ['trading_center', 'power_producer', 'dispatch_center', 'admin'].includes(r)
       );
 
-      if (message.targetUsers && message.targetUsers.length > 0) {
-        if (isOnlyCarbonAnalyst) {
-          if (message.targetUsers.includes(client.userId)) {
-            if (client.ws.readyState === WebSocket.OPEN) {
-              client.ws.send(JSON.stringify(fullMessage));
+      let sentByRole = false;
+      let sentByOwner = false;
+
+      for (const targetRole of message.targetRoles) {
+        const targetRoleLower = (targetRole as string).toLowerCase();
+
+        if (targetRoleLower === 'carbon_analyst' && isCarbonAnalyst) {
+          if (message.targetUsers && message.targetUsers.length > 0) {
+            const ownerMatch = message.targetUsers.includes(client.ownerId || '');
+            const userMatch = message.targetUsers.includes(client.userId);
+            if (ownerMatch || userMatch) {
+              send(client);
+              sentByOwner = true;
             }
+          } else {
+            send(client);
+            sentByOwner = true;
           }
-          return;
+          continue;
+        }
+
+        if (clientRolesLower.includes(targetRoleLower)) {
+          sentByRole = true;
         }
       }
 
-      if (client.ws.readyState === WebSocket.OPEN) {
-        client.ws.send(JSON.stringify(fullMessage));
+      if (sentByRole && !sentByOwner) {
+        send(client);
       }
     });
   }

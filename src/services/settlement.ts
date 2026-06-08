@@ -119,29 +119,49 @@ class SettlementService {
     const endDate = `${year}-${month}-${new Date(parseInt(year), parseInt(month), 0).getDate()}`;
 
     const transactions = transactionModel.findByPlant(plantId, startDate, endDate);
-    const dailySettlements = settlementModel.findByPlant(plantId).filter(s => 
-      s.periodType === 'daily' && s.period.startsWith(yearMonth)
-    );
 
+    const items: SettlementItem[] = [];
     let totalEnergy = 0;
     let totalRevenue = 0;
     let totalPenalty = 0;
     let totalCarbonCost = 0;
     let totalRenewableCompensation = 0;
-    let totalDispatchDeduction = 0;
-    let totalContinuousDeduction = 0;
-    const allItems: SettlementItem[] = [];
 
-    dailySettlements.forEach(ds => {
-      totalEnergy += ds.totalEnergy;
-      totalRevenue += ds.totalRevenue;
-      totalPenalty += ds.deviationPenalty;
-      totalCarbonCost += ds.carbonCost;
-      totalRenewableCompensation += ds.renewableCompensation;
-      totalDispatchDeduction += ds.dispatchPenaltyDeduction || 0;
-      totalContinuousDeduction += ds.continuousPenaltyDeduction || 0;
-      allItems.push(...ds.items);
+    transactions.forEach(trans => {
+      const scheduledEnergy = trans.clearedCapacity;
+      const tradingDate = trans.tradingDate;
+      const actualEnergy = this.getActualEnergy(trans.generatorId, tradingDate, trans.tradingHour, scheduledEnergy);
+      const deviation = actualEnergy - scheduledEnergy;
+      const deviationRatio = scheduledEnergy > 0 ? Math.abs(deviation) / scheduledEnergy : 0;
+      const electricityFee = scheduledEnergy * trans.clearedPrice;
+      const { penalty, rule } = this.calculateDeviationPenalty(deviationRatio, electricityFee);
+      const amount = roundTo(actualEnergy * trans.clearedPrice, 2);
+
+      items.push({
+        transactionId: trans.id,
+        tradingDate: trans.tradingDate,
+        tradingHour: trans.tradingHour,
+        scheduledEnergy: roundTo(scheduledEnergy, 2),
+        actualEnergy: roundTo(actualEnergy, 2),
+        deviation: roundTo(deviation, 2),
+        deviationRatio: roundTo(deviationRatio, 4),
+        price: trans.clearedPrice,
+        amount,
+        penalty: roundTo(penalty, 2),
+        penaltyRule: rule
+      });
+
+      totalEnergy += actualEnergy;
+      totalRevenue += amount;
+      totalPenalty += penalty;
+      totalCarbonCost += this.calculateCarbonCost(plantId, trans.tradingDate);
+      totalRenewableCompensation += this.calculateRenewableCompensation(plantId, trans.tradingDate);
     });
+
+    const penaltySummary = dispatchModel.getPenaltySummary(plantId, startDate, endDate);
+    const dispatchPenaltyDeduction = penaltySummary.basePoints * 100;
+    const continuousPenaltyDeduction = (penaltySummary.continuousPenalty || 0) * 100;
+    totalPenalty += dispatchPenaltyDeduction + continuousPenaltyDeduction;
 
     const netAmount = roundTo(totalRevenue - totalPenalty - totalCarbonCost + totalRenewableCompensation, 2);
 
@@ -155,12 +175,12 @@ class SettlementService {
       deviationPenalty: roundTo(totalPenalty, 2),
       carbonCost: roundTo(totalCarbonCost, 2),
       renewableCompensation: roundTo(totalRenewableCompensation, 2),
-      dispatchPenaltyDeduction: totalDispatchDeduction,
-      continuousPenaltyDeduction: totalContinuousDeduction,
+      dispatchPenaltyDeduction,
+      continuousPenaltyDeduction,
       penaltyRules: PENALTY_RULES.trim(),
       netAmount,
       status: 'calculated',
-      items: allItems
+      items
     });
 
     wsService.broadcast({
