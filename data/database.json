@@ -257,9 +257,9 @@
       "tradingHour": 4,
       "capacity": 462.08,
       "price": 438.04,
-      "status": "pending",
+      "status": "cleared",
       "createdAt": "2026-06-07T12:21:29.865Z",
-      "updatedAt": "2026-06-07T12:21:29.865Z"
+      "updatedAt": "2026-06-07T13:26:04.719Z"
     },
     {
       "id": "63f30d33-6e84-4600-b60b-1c41e2fbe86d",
@@ -478,9 +478,9 @@
       "tradingHour": 0,
       "capacity": 251.22,
       "price": 446.86,
-      "status": "pending",
+      "status": "cleared",
       "createdAt": "2026-06-07T12:21:29.865Z",
-      "updatedAt": "2026-06-07T12:21:29.865Z"
+      "updatedAt": "2026-06-07T13:26:04.712Z"
     },
     {
       "id": "654e07eb-129a-4b67-92ef-27afc1443d36",
@@ -1157,6 +1157,42 @@
       "status": "confirmed",
       "id": "0d8e528c-4718-4d5a-ab93-8e587b30c91b",
       "createdAt": "2026-06-07T12:29:16.026Z"
+    },
+    {
+      "bidId": "91911088-c8ef-4ac1-93b4-5e46153d6593",
+      "generatorId": "13b1bc5b-add3-4859-b28b-82d2cff814a4",
+      "plantId": "ed4aebd9-ec74-4469-9794-b18c242689b7",
+      "ownerId": "owner_002",
+      "tradingDate": "2026-06-07",
+      "tradingHour": 0,
+      "clearedCapacity": 251.22,
+      "clearedPrice": 446.86,
+      "nodeId": "SH01",
+      "nodePrice": 513.89,
+      "isCrossBorder": false,
+      "fromRegion": "华东",
+      "toRegion": "华东",
+      "status": "confirmed",
+      "id": "ead6d592-e521-4ce6-a668-bbdeee258b47",
+      "createdAt": "2026-06-07T13:26:04.711Z"
+    },
+    {
+      "bidId": "b6333854-fc20-4dfb-a07b-94c0f1a3c269",
+      "generatorId": "89cd4f97-e7ad-4a6a-a2d4-aaeaf68fe54d",
+      "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
+      "ownerId": "owner_001",
+      "tradingDate": "2026-06-07",
+      "tradingHour": 4,
+      "clearedCapacity": 462.08,
+      "clearedPrice": 438.04,
+      "nodeId": "BJ01",
+      "nodePrice": 481.84,
+      "isCrossBorder": false,
+      "fromRegion": "华北",
+      "toRegion": "华北",
+      "status": "confirmed",
+      "id": "45f704a3-0b69-4b4f-a59f-7f8810843984",
+      "createdAt": "2026-06-07T13:26:04.719Z"
     }
   ],
   "transmissionLines": [
@@ -1167,7 +1203,7 @@
       "fromRegion": "华北",
       "toRegion": "华北",
       "maxCapacity": 1000,
-      "currentFlow": 2387.205,
+      "currentFlow": 2525.8289999999997,
       "lossRate": 0.02,
       "status": "overloaded"
     },
@@ -1189,7 +1225,7 @@
       "fromRegion": "华东",
       "toRegion": "华东",
       "maxCapacity": 1200,
-      "currentFlow": 1278.3329999999999,
+      "currentFlow": 1353.6989999999998,
       "lossRate": 0.02,
       "status": "overloaded"
     },
@@ -1611,10 +1647,334 @@
       "issuedAt": "2026-06-07T12:29:16.029Z",
       "violationCount": 0,
       "penaltyPoints": 0
+    },
+    {
+      "generatorId": "gen_coal_1",
+      "plantId": "plant_shidong",
+      "targetOutput": 500,
+      "startTime": "2026-06-07T21:30:33.098Z",
+      "endTime": "2026-06-07T22:25:33.098Z",
+      "issuedBy": "dispatch_1",
+      "status": "violated",
+      "id": "6993c0a2-bfe5-42c3-95b7-b1dcf86db75a",
+      "issuedAt": "2026-06-07T13:25:33.102Z",
+      "violationCount": 1,
+      "penaltyPoints": 10,
+      "actualOutput": 0,
+      "deviation": -500,
+      "acknowledgedAt": "2026-06-07T13:27:35.087Z",
+      "completedAt": "2026-06-07T13:27:35.087Z"
+    },
+    {
+      "transactionId": "ead6d592-e521-4ce6-a668-bbdeee258b47",
+      "generatorId": "13b1bc5b-add3-4859-b28b-82d2cff814a4",
+      "plantId": "ed4aebd9-ec74-4469-9794-b18c242689b7",
+      "targetOutput": 175.85,
+      "startTime": "2026-06-06T16:00:00.000Z",
+      "endTime": "2026-06-06T17:00:00.000Z",
+      "status": "pending",
+      "issuedBy": "system",
+      "id": "d1a28fa9-dde6-43bf-b948-793012453cb0",
+      "issuedAt": "2026-06-07T13:26:04.716Z",
+      "violationCount": 0,
+      "penaltyPoints": 0
+    },
+    {
+      "generatorId": "1dc017c8-d1e2-45dc-83b8-812783e6efb4",
+      "plantId": "1dc017c8-d1e2-45dc-83b8-812783e6efb4",
+      "targetOutput": 75.37,
+      "startTime": "2026-06-06T16:00:00.000Z",
+      "endTime": "2026-06-06T17:00:00.000Z",
+      "status": "pending",
+      "issuedBy": "system",
+      "id": "95fe3ee8-5b8b-409f-9f72-b8bb7163040d",
+      "issuedAt": "2026-06-07T13:26:04.717Z",
+      "violationCount": 0,
+      "penaltyPoints": 0
+    },
+    {
+      "transactionId": "45f704a3-0b69-4b4f-a59f-7f8810843984",
+      "generatorId": "89cd4f97-e7ad-4a6a-a2d4-aaeaf68fe54d",
+      "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
+      "targetOutput": 323.46,
+      "startTime": "2026-06-06T20:00:00.000Z",
+      "endTime": "2026-06-06T21:00:00.000Z",
+      "status": "pending",
+      "issuedBy": "system",
+      "id": "7346d610-63df-4288-99ef-b7b200897d94",
+      "issuedAt": "2026-06-07T13:26:04.720Z",
+      "violationCount": 0,
+      "penaltyPoints": 0
+    },
+    {
+      "generatorId": "2c5d9fd0-9fc0-4020-be8b-e71163a65f81",
+      "plantId": "2c5d9fd0-9fc0-4020-be8b-e71163a65f81",
+      "targetOutput": 138.62,
+      "startTime": "2026-06-06T20:00:00.000Z",
+      "endTime": "2026-06-06T21:00:00.000Z",
+      "status": "pending",
+      "issuedBy": "system",
+      "id": "93b69182-de15-4174-bf85-07c73ce88e27",
+      "issuedAt": "2026-06-07T13:26:04.721Z",
+      "violationCount": 0,
+      "penaltyPoints": 0
+    },
+    {
+      "generatorId": "gen_coal_1",
+      "plantId": "plant_shidong",
+      "targetOutput": 500,
+      "startTime": "2026-06-08T11:55:33.485Z",
+      "endTime": "2026-06-08T12:50:33.485Z",
+      "issuedBy": "dispatch_1",
+      "status": "acknowledged",
+      "id": "3677febf-7a44-4242-b1f2-1a9fc1e6e5b1",
+      "issuedAt": "2026-06-08T03:50:33.510Z",
+      "violationCount": 0,
+      "penaltyPoints": 0,
+      "acknowledgedAt": "2026-06-08T03:50:33.548Z"
+    },
+    {
+      "generatorId": "gen_coal_1",
+      "plantId": "plant_shidong",
+      "targetOutput": 500,
+      "startTime": "2026-06-08T11:47:05.845Z",
+      "endTime": "2026-06-08T12:52:05.845Z",
+      "issuedBy": "dispatch_1",
+      "status": "violated",
+      "id": "81e6a8ef-a324-4c7c-94d4-81a3cb0e827f",
+      "issuedAt": "2026-06-08T03:52:05.847Z",
+      "violationCount": 1,
+      "penaltyPoints": 10,
+      "actualOutput": 0,
+      "deviation": -500,
+      "completedAt": "2026-06-08T03:54:09.030Z"
+    },
+    {
+      "generatorId": "gen_coal_2",
+      "plantId": "plant_shidong",
+      "targetOutput": 300,
+      "startTime": "2026-06-08T11:47:07.875Z",
+      "endTime": "2026-06-08T12:52:07.876Z",
+      "issuedBy": "dispatch_1",
+      "status": "violated",
+      "id": "86197b30-7f18-43d2-afd6-a696328e3882",
+      "issuedAt": "2026-06-08T03:52:07.877Z",
+      "violationCount": 2,
+      "penaltyPoints": 30,
+      "actualOutput": 100,
+      "deviation": -200,
+      "completedAt": "2026-06-08T03:54:56.389Z",
+      "continuousPenalty": 10
+    },
+    {
+      "generatorId": "gen_coal_1",
+      "plantId": "plant_shidong",
+      "targetOutput": 500,
+      "startTime": "2026-06-08T11:51:14.428Z",
+      "endTime": "2026-06-08T12:56:14.428Z",
+      "issuedBy": "dispatch_1",
+      "status": "violated",
+      "id": "c7904919-10f6-4928-9584-b724c5c902b6",
+      "issuedAt": "2026-06-08T03:56:14.450Z",
+      "violationCount": 1,
+      "penaltyPoints": 10,
+      "actualOutput": 0,
+      "deviation": -500,
+      "completedAt": "2026-06-08T03:58:18.606Z"
+    },
+    {
+      "generatorId": "gen_coal_2",
+      "plantId": "plant_shidong",
+      "targetOutput": 300,
+      "startTime": "2026-06-08T11:51:14.491Z",
+      "endTime": "2026-06-08T12:56:14.492Z",
+      "issuedBy": "dispatch_1",
+      "status": "violated",
+      "id": "54fc8f8e-2d68-4219-92f4-b5316c451269",
+      "issuedAt": "2026-06-08T03:56:14.494Z",
+      "violationCount": 1,
+      "penaltyPoints": 10,
+      "actualOutput": 0,
+      "deviation": -300,
+      "completedAt": "2026-06-08T03:58:18.603Z"
     }
   ],
   "crossBorderChecks": [],
-  "settlements": [],
+  "settlements": [
+    {
+      "plantId": "plant_shidong",
+      "ownerId": "unknown",
+      "period": "2026-06-07",
+      "periodType": "daily",
+      "totalEnergy": 0,
+      "totalRevenue": 0,
+      "deviationPenalty": 0,
+      "carbonCost": 0,
+      "renewableCompensation": 0,
+      "dispatchPenaltyDeduction": 0,
+      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
+      "netAmount": 0,
+      "status": "calculated",
+      "items": [],
+      "id": "1588a891-db17-4016-a612-a6c87d9b504c",
+      "createdAt": "2026-06-07T13:25:48.044Z"
+    },
+    {
+      "plantId": "plant_shidong",
+      "ownerId": "unknown",
+      "period": "2026-06-08",
+      "periodType": "daily",
+      "totalEnergy": 0,
+      "totalRevenue": 0,
+      "deviationPenalty": 0,
+      "carbonCost": 0,
+      "renewableCompensation": 0,
+      "dispatchPenaltyDeduction": 0,
+      "continuousPenaltyDeduction": 0,
+      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
+      "netAmount": 0,
+      "status": "calculated",
+      "items": [],
+      "id": "b8f86e04-c831-44c6-a7f8-1f9d3ce2e520",
+      "createdAt": "2026-06-08T03:50:48.631Z"
+    },
+    {
+      "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
+      "ownerId": "unknown",
+      "period": "2026-06-08",
+      "periodType": "daily",
+      "totalEnergy": 0,
+      "totalRevenue": 0,
+      "deviationPenalty": 0,
+      "carbonCost": 0,
+      "renewableCompensation": 0,
+      "dispatchPenaltyDeduction": 0,
+      "continuousPenaltyDeduction": 0,
+      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
+      "netAmount": 0,
+      "status": "calculated",
+      "items": [],
+      "id": "570f1266-45d1-431d-a633-bc1904425778",
+      "createdAt": "2026-06-08T03:51:15.450Z"
+    },
+    {
+      "plantId": "750dd82d-f607-4fda-b63e-ef8a6b34e73d",
+      "ownerId": "owner_001",
+      "period": "2026-06-07",
+      "periodType": "daily",
+      "totalEnergy": 2704.27,
+      "totalRevenue": 1001300.06,
+      "deviationPenalty": 0,
+      "carbonCost": 1191.36,
+      "renewableCompensation": 0,
+      "dispatchPenaltyDeduction": 0,
+      "continuousPenaltyDeduction": 0,
+      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
+      "netAmount": 1000108.7,
+      "status": "calculated",
+      "items": [
+        {
+          "transactionId": "0d8e528c-4718-4d5a-ab93-8e587b30c91b",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 20,
+          "scheduledEnergy": 502.79,
+          "actualEnergy": 482.32,
+          "deviation": -20.47,
+          "deviationRatio": 0.0407,
+          "price": 392.12,
+          "amount": 189127.32,
+          "penalty": 0,
+          "penaltyRule": "偏差率4.07% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "7f9a5995-46cf-4318-be1e-81d2c039b840",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 16,
+          "scheduledEnergy": 527.51,
+          "actualEnergy": 542.75,
+          "deviation": 15.24,
+          "deviationRatio": 0.0289,
+          "price": 407.72,
+          "amount": 221290.03,
+          "penalty": 0,
+          "penaltyRule": "偏差率2.89% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "bcdcac7e-bd52-407f-a604-3d4415aff1eb",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 12,
+          "scheduledEnergy": 379.88,
+          "actualEnergy": 396.14,
+          "deviation": 16.26,
+          "deviationRatio": 0.0428,
+          "price": 273.23,
+          "amount": 108237.33,
+          "penalty": 0,
+          "penaltyRule": "偏差率4.28% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "369a2e11-013f-4ec0-b055-5d84882fc29e",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 8,
+          "scheduledEnergy": 409.07,
+          "actualEnergy": 414.61,
+          "deviation": 5.54,
+          "deviationRatio": 0.0135,
+          "price": 316.33,
+          "amount": 131153.58,
+          "penalty": 0,
+          "penaltyRule": "偏差率1.35% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "45f704a3-0b69-4b4f-a59f-7f8810843984",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 4,
+          "scheduledEnergy": 462.08,
+          "actualEnergy": 455.78,
+          "deviation": -6.3,
+          "deviationRatio": 0.0136,
+          "price": 438.04,
+          "amount": 199649.87,
+          "penalty": 0,
+          "penaltyRule": "偏差率1.36% ≤ 5%，免考核"
+        },
+        {
+          "transactionId": "b66e10e1-1736-4fc9-8e02-e35ddf0c9f41",
+          "tradingDate": "2026-06-07",
+          "tradingHour": 0,
+          "scheduledEnergy": 426.31,
+          "actualEnergy": 412.67,
+          "deviation": -13.64,
+          "deviationRatio": 0.032,
+          "price": 367.95,
+          "amount": 151841.93,
+          "penalty": 0,
+          "penaltyRule": "偏差率3.20% ≤ 5%，免考核"
+        }
+      ],
+      "id": "3352a80c-f232-48d1-9264-7e7b9b903eff",
+      "createdAt": "2026-06-08T03:51:49.415Z"
+    },
+    {
+      "plantId": "plant_shidong",
+      "ownerId": "unknown",
+      "period": "2026-06-08",
+      "periodType": "daily",
+      "totalEnergy": 0,
+      "totalRevenue": 0,
+      "deviationPenalty": 4000,
+      "carbonCost": 0,
+      "renewableCompensation": 0,
+      "dispatchPenaltyDeduction": 4000,
+      "continuousPenaltyDeduction": 1000,
+      "penaltyRules": "偏差考核费规则：\n1. 偏差率 ≤ 5%：不收取考核费\n2. 5% < 偏差率 ≤ 10%：考核费 = (偏差率 - 5%) * 电费 * 1.5\n3. 偏差率 > 10%：考核费 = (偏差率 - 5%) * 电费 * 3.0",
+      "netAmount": -4000,
+      "status": "calculated",
+      "items": [],
+      "id": "a6ea839f-e963-410b-a483-89770205506d",
+      "createdAt": "2026-06-08T03:57:10.261Z"
+    }
+  ],
   "renewableForecasts": [],
   "carbonAccounts": [
     {
@@ -1666,5 +2026,131 @@
       "tradingRecords": []
     }
   ],
-  "alerts": []
+  "alerts": [
+    {
+      "type": "line_overload",
+      "severity": "warning",
+      "title": "线路过载再调度通知",
+      "message": "3条线路过载，已生成2条再调度指令",
+      "targetRoles": [
+        "dispatch_center",
+        "trading_center"
+      ],
+      "id": "ad7edbfe-31ed-4aef-a066-de06c44d1151",
+      "createdAt": "2026-06-07T13:26:04.718Z",
+      "acknowledged": false
+    },
+    {
+      "type": "line_overload",
+      "severity": "warning",
+      "title": "线路过载再调度通知",
+      "message": "3条线路过载，已生成2条再调度指令",
+      "targetRoles": [
+        "dispatch_center",
+        "trading_center"
+      ],
+      "id": "8e372796-8db7-44ed-b743-faabc1c74589",
+      "createdAt": "2026-06-07T13:26:04.721Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "warning",
+      "title": "调度超时违规 - 第1次",
+      "message": "机组gen_coal_1指令下发122秒未确认，已自动标记为违规。当前扣分: 10分",
+      "relatedId": "6993c0a2-bfe5-42c3-95b7-b1dcf86db75a",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "bf2a4077-8fea-4a17-95d6-a345ababddb2",
+      "createdAt": "2026-06-07T13:27:35.088Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "warning",
+      "title": "调度超时违规 - 第1次",
+      "message": "机组gen_coal_2指令下发121秒未确认，已自动标记为违规。当前扣分: 10分",
+      "relatedId": "86197b30-7f18-43d2-afd6-a696328e3882",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "2e5417d0-4481-47d8-bbb5-32553de26670",
+      "createdAt": "2026-06-08T03:54:09.027Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "warning",
+      "title": "调度超时违规 - 第1次",
+      "message": "机组gen_coal_1指令下发123秒未确认，已自动标记为违规。当前扣分: 10分",
+      "relatedId": "81e6a8ef-a324-4c7c-94d4-81a3cb0e827f",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "e70c4cc6-6722-4474-a6b6-fc9b9e98fa9a",
+      "createdAt": "2026-06-08T03:54:09.032Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "critical",
+      "title": "调度执行违规 - 第2次",
+      "message": "机组gen_coal_2未按指令执行: 执行违规。当前扣分: 20分",
+      "relatedId": "86197b30-7f18-43d2-afd6-a696328e3882",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "f0fed08a-bbde-4c59-aaa3-81232b6df2e2",
+      "createdAt": "2026-06-08T03:54:56.390Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "critical",
+      "title": "连续违规加重处罚通知",
+      "message": "电厂plant_shidong连续2次违规，追加10分考核，累计30分。将扣减当月结算费用，信用评级下调，限制交易权限",
+      "relatedId": "plant_shidong",
+      "targetRoles": [
+        "dispatch_center",
+        "trading_center",
+        "power_producer"
+      ],
+      "id": "1227d851-21eb-4e2d-a424-3adfd410962b",
+      "createdAt": "2026-06-08T03:54:56.391Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "warning",
+      "title": "调度超时违规 - 第1次",
+      "message": "机组gen_coal_2指令下发124秒未确认，已自动标记为违规。当前扣分: 10分",
+      "relatedId": "54fc8f8e-2d68-4219-92f4-b5316c451269",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "a2e25f10-6a9c-49f6-b2e6-354d7d1d5347",
+      "createdAt": "2026-06-08T03:58:18.605Z",
+      "acknowledged": false
+    },
+    {
+      "type": "dispatch_violation",
+      "severity": "warning",
+      "title": "调度超时违规 - 第1次",
+      "message": "机组gen_coal_1指令下发124秒未确认，已自动标记为违规。当前扣分: 10分",
+      "relatedId": "c7904919-10f6-4928-9584-b724c5c902b6",
+      "targetRoles": [
+        "dispatch_center",
+        "power_producer"
+      ],
+      "id": "decccf07-a166-4ee6-828b-2e1151b7589e",
+      "createdAt": "2026-06-08T03:58:18.606Z",
+      "acknowledged": false
+    }
+  ]
 }

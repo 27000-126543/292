@@ -64,12 +64,27 @@ class WebSocketService {
       const hasRole = message.targetRoles.some(role => 
         client.roles.map(r => r.toLowerCase()).includes((role as string).toLowerCase())
       );
-      const hasUser = !message.targetUsers || message.targetUsers.includes(client.userId);
       
-      if (hasRole || hasUser) {
-        if (client.ws.readyState === WebSocket.OPEN) {
-          client.ws.send(JSON.stringify(fullMessage));
+      if (!hasRole) return;
+
+      const isCarbonAnalyst = client.roles.map(r => r.toLowerCase()).includes('carbon_analyst');
+      const isOnlyCarbonAnalyst = isCarbonAnalyst && !client.roles.some(r => 
+        ['trading_center', 'power_producer', 'dispatch_center', 'admin'].map(s => s.toLowerCase()).includes((r as string).toLowerCase())
+      );
+
+      if (message.targetUsers && message.targetUsers.length > 0) {
+        if (isOnlyCarbonAnalyst) {
+          if (message.targetUsers.includes(client.userId)) {
+            if (client.ws.readyState === WebSocket.OPEN) {
+              client.ws.send(JSON.stringify(fullMessage));
+            }
+          }
+          return;
         }
+      }
+
+      if (client.ws.readyState === WebSocket.OPEN) {
+        client.ws.send(JSON.stringify(fullMessage));
       }
     });
   }
@@ -80,7 +95,8 @@ class WebSocketService {
     this.broadcast({
       type: 'alert',
       payload: savedAlert,
-      targetRoles: alert.targetRoles
+      targetRoles: alert.targetRoles,
+      targetUsers: alert.targetUsers
     });
 
     return savedAlert;

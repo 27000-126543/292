@@ -49,10 +49,12 @@ function seed() {
 
   const today = new Date().toISOString().split('T')[0];
   const bids: DatabaseTables['bids'] = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < generators.length; i++) {
     const gen = generators[i];
     for (let hour = 0; hour < 24; hour += 4) {
-      const price = 250 + Math.random() * 200;
+      const price = gen.type === 'wind' || gen.type === 'solar' 
+        ? 150 + Math.random() * 100 
+        : 250 + Math.random() * 200;
       const capacity = gen.maxCapacity * (0.6 + Math.random() * 0.3);
       bids.push({
         id: generateId(),

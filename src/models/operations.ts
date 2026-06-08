@@ -21,7 +21,7 @@ export const dispatchModel = {
   },
 
   findActive(): DispatchInstruction[] {
-    return db.findWhere('dispatchInstructions', d => ['sent', 'executing'].includes(d.status))
+    return db.findWhere('dispatchInstructions', d => ['sent', 'acknowledged', 'executing'].includes(d.status))
       .sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
   },
 
@@ -66,21 +66,50 @@ export const dispatchModel = {
       status,
       actualOutput: actualOutput !== undefined ? actualOutput : instruction.actualOutput,
       deviation: deviation !== null ? deviation : instruction.deviation,
-      acknowledgedAt: status === 'sent' ? instruction.acknowledgedAt : (instruction.acknowledgedAt || timestamp),
+      acknowledgedAt: status === 'acknowledged' ? timestamp : instruction.acknowledgedAt,
       completedAt: ['completed', 'failed', 'violated'].includes(status) ? timestamp : instruction.completedAt,
       violationCount,
       penaltyPoints
     });
   },
 
-  getPenaltySummary(plantId: string, startDate: string, endDate: string): { totalViolations: number; totalPoints: number } {
-    const instructions = db.findWhere('dispatchInstructions', d => 
-      d.plantId === plantId && d.issuedAt >= startDate && d.issuedAt <= endDate
-    );
+  acknowledge(id: string): void {
+    db.update('dispatchInstructions', id, {
+      status: 'acknowledged',
+      acknowledgedAt: now()
+    });
+  },
+
+  addPenaltyPoints(id: string, extraPoints: number): void {
+    const instruction = db.findById('dispatchInstructions', id);
+    if (!instruction) return;
+    db.update('dispatchInstructions', id, {
+      penaltyPoints: instruction.penaltyPoints + extraPoints,
+      continuousPenalty: (instruction.continuousPenalty || 0) + extraPoints,
+      continuousPenaltyApplied: true
+    });
+  },
+
+  getPenaltySummary(plantId: string, startDate: string, endDate: string): { 
+    totalViolations: number; 
+    totalPoints: number;
+    basePoints: number;
+    continuousPenalty: number;
+  } {
+    const instructions = db.findWhere('dispatchInstructions', d => {
+      if (d.plantId !== plantId) return false;
+      const issuedDate = d.issuedAt.substring(0, 10);
+      return issuedDate >= startDate && issuedDate <= endDate;
+    });
+
+    const basePoints = instructions.reduce((sum, i) => sum + i.violationCount * 10, 0);
+    const continuousPenalty = instructions.reduce((sum, i) => sum + (i.continuousPenalty || 0), 0);
 
     return {
       totalViolations: instructions.reduce((sum, i) => sum + i.violationCount, 0),
-      totalPoints: instructions.reduce((sum, i) => sum + i.penaltyPoints, 0)
+      totalPoints: basePoints + continuousPenalty,
+      basePoints,
+      continuousPenalty
     };
   }
 };
@@ -330,6 +359,18 @@ export const alertModel = {
 
   findByRole(role: string): Alert[] {
     return db.findWhere('alerts', a => a.targetRoles.includes(role as any))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 100);
+  },
+
+  findByRoleAndOwner(role: string, ownerId: string): Alert[] {
+    return db.findWhere('alerts', a => {
+      if (!a.targetRoles.includes(role as any)) return false;
+      if (a.targetUsers && a.targetUsers.length > 0) {
+        return a.targetUsers.includes(ownerId);
+      }
+      return true;
+    })
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       .slice(0, 100);
   },

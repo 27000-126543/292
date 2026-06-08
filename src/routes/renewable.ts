@@ -83,8 +83,8 @@ router.get('/storage/:region', (req: Request, res: Response) => {
 
 router.get('/compensation/:forecastId', (req: Request, res: Response) => {
   try {
-    const compensation = renewableService.calculateCompensation(req.params.forecastId);
-    res.json({ success: true, data: { compensation } });
+    const result = renewableService.calculateCompensation(req.params.forecastId);
+    res.json({ success: true, data: result });
   } catch (e: any) {
     res.status(400).json({ success: false, error: e.message });
   }

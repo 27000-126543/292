@@ -40,18 +40,23 @@ class DispatchService {
   }
 
   private monitorInstructions() {
-    const sentInstructions = dispatchModel.findAll().filter(i => i.status === 'sent');
     const nowTime = new Date(now()).getTime();
 
+    const sentInstructions = dispatchModel.findAll().filter(i => i.status === 'sent');
     sentInstructions.forEach(instruction => {
       const issuedTime = new Date(instruction.issuedAt).getTime();
       const elapsed = nowTime - issuedTime;
 
-      if (!instruction.acknowledgedAt && elapsed > config.rules.dispatchAckTimeout) {
+      if (elapsed > config.rules.dispatchAckTimeout) {
         this.handleTimeoutViolation(instruction, `指令下发${(elapsed / 1000).toFixed(0)}秒未确认`);
         return;
       }
+    });
 
+    const activeInstructions = dispatchModel.findAll().filter(i => 
+      i.status === 'sent' || i.status === 'acknowledged' || i.status === 'executing'
+    );
+    activeInstructions.forEach(instruction => {
       if (instruction.actualOutput !== undefined && instruction.targetOutput > 0) {
         const deviationRatio = Math.abs(instruction.actualOutput - instruction.targetOutput) / instruction.targetOutput;
         if (deviationRatio > config.rules.dispatchDeviationThreshold && instruction.status !== 'violated') {
@@ -74,48 +79,63 @@ class DispatchService {
   }
 
   private handleTimeoutViolation(instruction: DispatchInstruction, reason: string) {
+    if (instruction.status === 'violated') return;
     dispatchModel.updateStatus(instruction.id, 'violated', 0);
     const updated = dispatchModel.findById(instruction.id)!;
     
     wsService.sendAlert({
       type: 'dispatch_violation',
-      severity: updated.violationCount >= config.rules.maxContinuousViolations ? 'critical' : 'warning',
-      title: `调度超时违规 - 第${updated.violationCount}次`,
+      severity: 'warning',
+      title: '调度超时违规',
       message: `机组${instruction.generatorId}${reason}，已自动标记为违规。当前扣分: ${updated.penaltyPoints}分`,
       relatedId: instruction.id,
       targetRoles: ['dispatch_center', 'power_producer']
     });
 
-    if (updated.violationCount >= config.rules.maxContinuousViolations) {
-      this.triggerContinuousPenalty(updated);
-    }
+    this.checkPlantContinuousPenalty(updated);
 
     wsService.sendDispatchUpdate(updated);
   }
 
   private handleDeviationViolation(instruction: DispatchInstruction, deviationRatio: number) {
+    if (instruction.status === 'violated') return;
     dispatchModel.updateStatus(instruction.id, 'violated', instruction.actualOutput);
     const updated = dispatchModel.findById(instruction.id)!;
     
     wsService.sendAlert({
       type: 'dispatch_violation',
-      severity: updated.violationCount >= config.rules.maxContinuousViolations ? 'critical' : 'warning',
-      title: `调度出力偏差违规 - 第${updated.violationCount}次`,
+      severity: 'warning',
+      title: '调度出力偏差违规',
       message: `机组${instruction.generatorId}出力偏差${(deviationRatio * 100).toFixed(1)}%，超出允许范围${(config.rules.dispatchDeviationThreshold * 100).toFixed(0)}%。当前扣分: ${updated.penaltyPoints}分`,
       relatedId: instruction.id,
       targetRoles: ['dispatch_center', 'power_producer']
     });
 
-    if (updated.violationCount >= config.rules.maxContinuousViolations) {
-      this.triggerContinuousPenalty(updated);
-    }
+    this.checkPlantContinuousPenalty(updated);
 
     wsService.sendDispatchUpdate(updated);
   }
 
+  private checkPlantContinuousPenalty(instruction: DispatchInstruction) {
+    if (instruction.continuousPenaltyApplied) return;
+
+    const plantViolations = dispatchModel.findAll().filter(
+      i => i.plantId === instruction.plantId && i.violationCount > 0
+    );
+
+    if (plantViolations.length >= config.rules.maxContinuousViolations) {
+      const alreadyApplied = plantViolations.some(i => i.continuousPenaltyApplied);
+      if (!alreadyApplied) {
+        this.triggerContinuousPenalty(instruction);
+      }
+    }
+  }
+
   private triggerContinuousPenalty(instruction: DispatchInstruction) {
     const extraPoints = config.rules.continuousViolationExtraPenalty;
-    const currentPoints = instruction.penaltyPoints + extraPoints;
+    dispatchModel.addPenaltyPoints(instruction.id, extraPoints);
+    const updated = dispatchModel.findById(instruction.id)!;
+    const currentPoints = updated.penaltyPoints;
     
     wsService.sendAlert({
       type: 'dispatch_violation',
@@ -130,7 +150,7 @@ class DispatchService {
       type: 'dispatch_penalty_triggered',
       payload: {
         plantId: instruction.plantId,
-        violationCount: instruction.violationCount,
+        violationCount: updated.violationCount,
         totalPenaltyPoints: currentPoints,
         extraPenalty: extraPoints,
         settlementDeduction: currentPoints * 100
@@ -176,6 +196,11 @@ class DispatchService {
       throw new Error('调度指令不存在');
     }
 
+    if (instruction.status !== 'sent') {
+      throw new Error(`当前状态${instruction.status}不可确认，仅sent状态可确认`);
+    }
+
+    dispatchModel.acknowledge(instructionId);
     const updated = dispatchModel.findById(instructionId)!;
     wsService.sendDispatchUpdate(updated);
 
@@ -212,20 +237,16 @@ class DispatchService {
   }
 
   private handleViolation(instruction: DispatchInstruction, reason: string) {
-    const severity = instruction.violationCount >= config.rules.maxContinuousViolations ? 'critical' : 'warning';
-    
     wsService.sendAlert({
       type: 'dispatch_violation',
-      severity,
-      title: `调度执行违规 - 第${instruction.violationCount}次`,
+      severity: 'warning',
+      title: '调度执行违规',
       message: `机组${instruction.generatorId}未按指令执行: ${reason}。当前扣分: ${instruction.penaltyPoints}分`,
       relatedId: instruction.id,
       targetRoles: ['dispatch_center', 'power_producer']
     });
 
-    if (instruction.violationCount >= config.rules.maxContinuousViolations) {
-      this.triggerContinuousPenalty(instruction);
-    }
+    this.checkPlantContinuousPenalty(instruction);
   }
 
   monitorActiveInstructions() {
@@ -257,6 +278,8 @@ class DispatchService {
   getPenaltySummary(plantId: string, startDate: string, endDate: string): { 
     totalViolations: number; 
     totalPoints: number;
+    basePoints: number;
+    continuousPenalty: number;
     estimatedSettlementDeduction: number;
   } {
     const summary = dispatchModel.getPenaltySummary(plantId, startDate, endDate);

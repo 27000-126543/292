@@ -58,8 +58,7 @@ class RenewableService {
     const deviation = Math.abs(forecast.deviation || 0);
     const storageAmount = Math.min(deviation * 0.6, 200);
     const loadAmount = Math.min(deviation * 0.3, 100);
-    const totalDispatched = storageAmount + loadAmount;
-    const compensation = roundTo(totalDispatched * config.rules.renewableCompensationPrice, 2);
+    const compensation = roundTo(deviation * config.rules.renewableCompensationPrice, 2);
 
     renewableForecastModel.dispatchStorage(forecast.id, storageAmount, loadAmount, compensation);
 
@@ -70,7 +69,7 @@ class RenewableService {
       type: 'renewable_deviation',
       severity: 'warning',
       title: '新能源预测偏差超限',
-      message: `${generator.name}预测偏差${(forecast.deviationRatio! * 100).toFixed(1)}%，偏差电量${deviation.toFixed(2)}MWh，已调用储能${storageAmount}MW、可调负荷${loadAmount}MW，补偿单价${config.rules.renewableCompensationPrice}元/MWh，补偿费用${compensation}元`,
+      message: `${generator.name}预测偏差${(forecast.deviationRatio! * 100).toFixed(1)}%，偏差电量${deviation.toFixed(2)}MWh，已调用储能${storageAmount.toFixed(2)}MW、可调负荷${loadAmount.toFixed(2)}MW，补偿单价${config.rules.renewableCompensationPrice}元/MWh，补偿费用=偏差电量${deviation.toFixed(2)}×${config.rules.renewableCompensationPrice}=${compensation}元`,
       relatedId: forecast.id,
       targetRoles: ['dispatch_center', 'power_producer']
     });
@@ -85,6 +84,7 @@ class RenewableService {
         loadAmount,
         compensationPrice: config.rules.renewableCompensationPrice,
         compensation,
+        compensationFormula: `偏差电量${deviation.toFixed(2)}MWh × 补偿单价${config.rules.renewableCompensationPrice}元/MWh = ${compensation}元`,
         availableStorage: storageGenerators.map(g => ({ id: g.id, name: g.name, maxCapacity: g.maxCapacity }))
       },
       targetRoles: ['dispatch_center', 'power_producer']
@@ -126,10 +126,25 @@ class RenewableService {
     return forecasts;
   }
 
-  calculateCompensation(forecastId: string): number {
+  calculateCompensation(forecastId: string): { compensation: number; formula: string; deviationAmount: number; compensationPrice: number; storageDispatched: number; loadDispatched: number } {
     const forecast = renewableForecastModel.findById(forecastId);
-    if (!forecast) return 0;
-    return forecast.compensation || 0;
+    if (!forecast) {
+      return { compensation: 0, formula: '', deviationAmount: 0, compensationPrice: config.rules.renewableCompensationPrice, storageDispatched: 0, loadDispatched: 0 };
+    }
+
+    const deviation = Math.abs(forecast.deviation || 0);
+    const expectedCompensation = roundTo(deviation * config.rules.renewableCompensationPrice, 2);
+    const actualCompensation = forecast.compensation || 0;
+    const compensation = actualCompensation > 0 ? actualCompensation : expectedCompensation;
+
+    return {
+      compensation,
+      formula: `偏差电量${deviation.toFixed(2)}MWh × 补偿单价${config.rules.renewableCompensationPrice}元/MWh = ${compensation}元`,
+      deviationAmount: deviation,
+      compensationPrice: config.rules.renewableCompensationPrice,
+      storageDispatched: forecast.storageDispatched || 0,
+      loadDispatched: forecast.loadDispatched || 0
+    };
   }
 
   getForecasts(filters?: { generatorId?: string; startDate?: string; exceeded?: boolean }): RenewableForecast[] {

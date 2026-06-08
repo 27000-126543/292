@@ -86,7 +86,7 @@ export interface DispatchInstruction {
   targetOutput: number;
   startTime: string;
   endTime: string;
-  status: 'pending' | 'sent' | 'executing' | 'completed' | 'failed' | 'violated';
+  status: 'pending' | 'sent' | 'acknowledged' | 'executing' | 'completed' | 'failed' | 'violated';
   actualOutput?: number;
   deviation?: number;
   issuedBy: string;
@@ -95,6 +95,8 @@ export interface DispatchInstruction {
   completedAt?: string;
   violationCount: number;
   penaltyPoints: number;
+  continuousPenalty?: number;
+  continuousPenaltyApplied?: boolean;
 }
 
 export interface CrossBorderCheck {
@@ -127,6 +129,7 @@ export interface Settlement {
   carbonCost: number;
   renewableCompensation: number;
   dispatchPenaltyDeduction: number;
+  continuousPenaltyDeduction: number;
   netAmount: number;
   penaltyRules: string;
   status: 'calculated' | 'confirmed' | 'paid';

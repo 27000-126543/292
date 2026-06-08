@@ -24,7 +24,7 @@ class SettlementService {
 
     transactions.forEach(trans => {
       const scheduledEnergy = trans.clearedCapacity;
-      const actualEnergy = this.getActualEnergy(trans.generatorId, date, trans.tradingHour);
+      const actualEnergy = this.getActualEnergy(trans.generatorId, date, trans.tradingHour, scheduledEnergy);
       const deviation = actualEnergy - scheduledEnergy;
       const deviationRatio = scheduledEnergy > 0 ? Math.abs(deviation) / scheduledEnergy : 0;
       
@@ -53,8 +53,9 @@ class SettlementService {
     });
 
     const penaltySummary = dispatchModel.getPenaltySummary(plantId, date, date);
-    const dispatchPenaltyDeduction = penaltySummary.totalPoints * 100;
-    totalPenalty += dispatchPenaltyDeduction;
+    const dispatchPenaltyDeduction = penaltySummary.basePoints * 100;
+    const continuousPenaltyDeduction = (penaltySummary.continuousPenalty || 0) * 100;
+    totalPenalty += dispatchPenaltyDeduction + continuousPenaltyDeduction;
 
     const carbonCost = this.calculateCarbonCost(plantId, date);
     const renewableCompensation = this.calculateRenewableCompensation(plantId, date);
@@ -72,6 +73,7 @@ class SettlementService {
       carbonCost: roundTo(carbonCost, 2),
       renewableCompensation: roundTo(renewableCompensation, 2),
       dispatchPenaltyDeduction,
+      continuousPenaltyDeduction,
       penaltyRules: PENALTY_RULES.trim(),
       netAmount,
       status: 'calculated',
@@ -127,6 +129,7 @@ class SettlementService {
     let totalCarbonCost = 0;
     let totalRenewableCompensation = 0;
     let totalDispatchDeduction = 0;
+    let totalContinuousDeduction = 0;
     const allItems: SettlementItem[] = [];
 
     dailySettlements.forEach(ds => {
@@ -135,7 +138,8 @@ class SettlementService {
       totalPenalty += ds.deviationPenalty;
       totalCarbonCost += ds.carbonCost;
       totalRenewableCompensation += ds.renewableCompensation;
-      totalDispatchDeduction += (ds as any).dispatchPenaltyDeduction || 0;
+      totalDispatchDeduction += ds.dispatchPenaltyDeduction || 0;
+      totalContinuousDeduction += ds.continuousPenaltyDeduction || 0;
       allItems.push(...ds.items);
     });
 
@@ -152,6 +156,7 @@ class SettlementService {
       carbonCost: roundTo(totalCarbonCost, 2),
       renewableCompensation: roundTo(totalRenewableCompensation, 2),
       dispatchPenaltyDeduction: totalDispatchDeduction,
+      continuousPenaltyDeduction: totalContinuousDeduction,
       penaltyRules: PENALTY_RULES.trim(),
       netAmount,
       status: 'calculated',
@@ -170,7 +175,7 @@ class SettlementService {
     return settlement;
   }
 
-  private getActualEnergy(generatorId: string, date: string, hour: number): number {
+  private getActualEnergy(generatorId: string, date: string, hour: number, scheduledEnergy: number): number {
     const instructions = dispatchModel.findByGenerator(generatorId);
     const dayStart = new Date(date);
     const hourStart = new Date(dayStart.getTime() + hour * 3600000);
@@ -178,19 +183,16 @@ class SettlementService {
 
     const matching = instructions.find(i => {
       const startTime = new Date(i.startTime);
-      return startTime >= hourStart && startTime < hourEnd;
+      return startTime >= hourStart && startTime < hourEnd && i.actualOutput !== undefined;
     });
 
-    if (matching && matching.actualOutput !== undefined) {
-      return matching.actualOutput;
+    if (matching) {
+      return matching.actualOutput!;
     }
 
-    const transactions = transactionModel.findByPlant('').filter(t => 
-      t.generatorId === generatorId && t.tradingDate === date && t.tradingHour === hour
-    );
-
-    if (transactions.length > 0) {
-      return transactions[0].clearedCapacity * (0.95 + Math.random() * 0.1);
+    if (scheduledEnergy > 0) {
+      const factor = 0.95 + Math.random() * 0.1;
+      return roundTo(scheduledEnergy * factor, 2);
     }
 
     return 0;

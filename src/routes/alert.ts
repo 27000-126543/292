@@ -6,10 +6,12 @@ const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
   try {
-    const { role, limit } = req.query;
+    const { role, ownerId, limit } = req.query;
     let alerts;
     
-    if (role) {
+    if (role && ownerId) {
+      alerts = alertModel.findByRoleAndOwner(role as string, ownerId as string);
+    } else if (role) {
       alerts = alertModel.findByRole(role as string);
     } else {
       alerts = alertModel.findAll(parseInt(limit as string) || 100);
