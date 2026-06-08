@@ -123,11 +123,11 @@ class DispatchService {
       i => i.plantId === instruction.plantId && i.violationCount > 0
     );
 
-    if (plantViolations.length >= config.rules.maxContinuousViolations) {
-      const alreadyApplied = plantViolations.some(i => i.continuousPenaltyApplied);
-      if (!alreadyApplied) {
-        this.triggerContinuousPenalty(instruction);
-      }
+    const appliedCount = plantViolations.filter(i => i.continuousPenaltyApplied).length;
+    const expectedTriggers = Math.floor(plantViolations.length / config.rules.maxContinuousViolations);
+
+    if (expectedTriggers > appliedCount) {
+      this.triggerContinuousPenalty(instruction);
     }
   }
 
@@ -213,6 +213,10 @@ class DispatchService {
       throw new Error('调度指令不存在');
     }
 
+    if (instruction.status === 'violated') {
+      throw new Error('指令已违规，不可重复更新执行状态');
+    }
+
     const deviation = update.actualOutput - instruction.targetOutput;
     const deviationRatio = instruction.targetOutput > 0 ? Math.abs(deviation) / instruction.targetOutput : 0;
 
@@ -225,12 +229,13 @@ class DispatchService {
     }
 
     dispatchModel.updateStatus(instructionId, finalStatus, update.actualOutput);
-    const updated = dispatchModel.findById(instructionId)!;
 
     if (finalStatus === 'violated') {
-      this.handleViolation(updated, violationMessage || '执行违规');
+      const afterViolation = dispatchModel.findById(instructionId)!;
+      this.handleViolation(afterViolation, violationMessage || '执行违规');
     }
 
+    const updated = dispatchModel.findById(instructionId)!;
     wsService.sendDispatchUpdate(updated);
 
     return updated;
